@@ -53,20 +53,21 @@ fs.watch(inputDir, (eventType, fileName) => {
 
   //
   if (eventType === "rename") {
-    console.log(`${fileName} was added/deleted`);
+    // console.log(`${fileName} was added/deleted`);
     if (!fs.existsSync(infile) && fs.existsSync(outfile)) {
       // remove from output dir
-      fs.unlink(fileName, (err) => {
+      const filePathToBeDeleted = `${outputDir}/${fileName}`
+      fs.unlink(filePathToBeDeleted, (err) => {
         if (err) {
           console.error(`Error removing file: ${err}`);
           return;
         }
 
-        console.log(`File ${filePath} has been successfully removed.`);
+        console.log(`File ${filePathToBeDeleted} has been successfully removed.`);
       });
     } else if (fs.existsSync(infile) && !fs.existsSync(outfile)) {
-      transpile(infile, outfile);
-      // created
+      console.log(`${fileName} was created`);
+      // transpile(infile, outfile);
     }
   } else {
     console.log(`${fileName} was updated`);
