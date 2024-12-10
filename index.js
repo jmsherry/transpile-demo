@@ -65,7 +65,7 @@ fs.watch(inputDir, (eventType, fileName) => {
         console.log(`File ${filePath} has been successfully removed.`);
       });
     } else if (fs.existsSync(infile) && !fs.existsSync(outfile)) {
-      // transpile(infile, outfile);
+      transpile(infile, outfile);
       // created
     }
   } else {
